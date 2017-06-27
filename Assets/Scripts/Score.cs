@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
 
     PlayerController playerController;
+
+    public Text scoreTextUI;
 
     public GameObject ball;
     public int score = 0;
     public Rigidbody rb;
 
     void Awake() {
-        playerController = GameObject.Find("PlayerManager").GetComponent<PlayerController>();
+        //playerController = GameObject.Find("PlayerManager").GetComponent<PlayerController>();
     }
     
     void Start () {
@@ -20,9 +23,11 @@ public class Score : MonoBehaviour {
 
     void Update()
     {
-        if (ball.transform.position.x < 10)
+        scoreTextUI.text = "Score: " + score.ToString();
+        if (ball.transform.position.y <= -3.2f)
         {
             GameOver();
+            scoreTextUI.text = "GAMEOVER";
         }
 
     }
