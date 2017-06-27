@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
 
     PlayerController playerController;
+
+    public Text scoreTextUI;
 
     public GameObject ball;
     public int score = 0;
@@ -20,7 +23,9 @@ public class Score : MonoBehaviour {
 
     void Update()
     {
-        if (ball.transform.position.x < 10)
+        scoreTextUI.text = "Score: " + score;
+
+        if (ball.transform.position.y <= -2)
         {
             GameOver();
         }
@@ -35,6 +40,7 @@ public class Score : MonoBehaviour {
     public void GameOver()
     {
         Application.Quit();
+        print("gameober");
     }
 
 }

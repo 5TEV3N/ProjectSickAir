@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public GameObject hit;
     private LayerMask interactiveMask;
 
+    public float ballIntensifier;
+
     private void Awake()
     {
         score = GameObject.FindGameObjectWithTag("BallTag").GetComponent<Score>();
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour
                 if (hitObject().transform.tag == "BallTag")
                 {
                     score.ScoreKeeper();
-                    score.rb.AddForce(transform.up* 10f,ForceMode.Impulse);
+                    score.rb.AddForce(transform.up * ballIntensifier, ForceMode.Impulse);
                 }
             }
             else { print("Debug: Found Nothing"); }
