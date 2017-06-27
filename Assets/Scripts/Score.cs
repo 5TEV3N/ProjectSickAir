@@ -2,19 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Score : MonoBehaviour {
 
     PlayerController playerController;
 
     public Text scoreTextUI;
-
+    public Text GameOverTextUI;
     public GameObject ball;
     public int score = 0;
     public Rigidbody rb;
+    public bool isGameOver;
 
-    void Awake() {
+    void Awake()
+    {
         playerController = GameObject.Find("PlayerManager").GetComponent<PlayerController>();
+        GameOverTextUI.gameObject.SetActive(false);
     }
     
     void Start () {
@@ -25,9 +29,17 @@ public class Score : MonoBehaviour {
     {
         scoreTextUI.text = "Score: " + score;
 
-        if (ball.transform.position.y <= -2)
+        if (ball.transform.position.y <= -3.1)
         {
             GameOver();
+            isGameOver = true;
+            Time.timeScale = 0f;
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                isGameOver = false;
+                Time.timeScale = 1;
+                SceneManager.LoadScene(0);
+            }
         }
 
     }
@@ -39,8 +51,7 @@ public class Score : MonoBehaviour {
 
     public void GameOver()
     {
-        Application.Quit();
-        print("gameober");
+        GameOverTextUI.gameObject.SetActive(true);
     }
 
 }

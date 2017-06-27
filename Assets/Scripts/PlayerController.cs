@@ -29,15 +29,18 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (FoundBallCheck() == true)
+            if (score.isGameOver == false)
             {
-                if (hitObject().transform.tag == "BallTag")
+                if (FoundBallCheck() == true)
                 {
-                    score.ScoreKeeper();
-                    score.rb.AddForce(transform.up * ballIntensifier, ForceMode.Impulse);
+                    if (hitObject().transform.tag == "BallTag")
+                    {
+                        score.ScoreKeeper();
+                        score.rb.AddForce(transform.up * ballIntensifier, ForceMode.Impulse);
+                    }
                 }
+                else { print("Debug: Found Nothing"); }
             }
-            else { print("Debug: Found Nothing"); }
         }
     }
 
