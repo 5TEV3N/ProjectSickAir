@@ -4,13 +4,37 @@ using UnityEngine;
 
 public class Score : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+    PlayerController playerController;
+
+    public GameObject ball;
+
+    int score = 0;
+    
+    void Awake() {
+        playerController = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerController>();
+    }
+    
+    void Start () {
+        score = 0;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    void Update()
+    {
+        if (ball.transform.position.x < 10)
+        {
+            GameOver();
+        }
+
+    }
+    
+    public void ScoreKeeper()
+    {
+        score++;
+    }
+
+    public void GameOver()
+    {
+        Application.Quit();
+    }
+
 }
