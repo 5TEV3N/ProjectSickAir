@@ -7,14 +7,11 @@ public class PlayerController : MonoBehaviour
     Score score;
 
     public float mouseRayDistance;
-
     public RaycastHit mouseHit;
     public Ray mouseRay;
     public Vector3 mousePosition;
     public GameObject hit;
-
     private LayerMask interactiveMask;
-
 
     private void Awake()
     {
@@ -35,6 +32,7 @@ public class PlayerController : MonoBehaviour
                 if (hitObject().transform.tag == "BallTag")
                 {
                     score.ScoreKeeper();
+                    score.rb.AddForce(transform.up* 10f,ForceMode.Impulse);
                 }
             }
             else { print("Debug: Found Nothing"); }

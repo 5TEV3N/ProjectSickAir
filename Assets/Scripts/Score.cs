@@ -7,11 +7,11 @@ public class Score : MonoBehaviour {
     PlayerController playerController;
 
     public GameObject ball;
+    public int score = 0;
+    public Rigidbody rb;
 
-    int score = 0;
-    
     void Awake() {
-        playerController = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerController>();
+        playerController = GameObject.Find("PlayerManager").GetComponent<PlayerController>();
     }
     
     void Start () {
